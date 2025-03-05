@@ -1,9 +1,9 @@
 # DiscordEmbedFromJSON
-Библиотека, позволяющая преобразовать JSON в Embed из Discord.py
+Библиотека, позволяющая преобразовать JSON в класс Embed.
 
 Использование:
 ```bash
 git clone
 cd
-pip install -r req.txt
+pip install -r requirements.txt
 ```
