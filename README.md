@@ -11,23 +11,23 @@ git clone https://github.com/yaroniks/DiscordEmbedFromJSON.git
 import DiscordEmbedFromJSON as dsjson
 
 message = dsjson.json_to_message("""{
-  "content": null,
+  "content": "1",
   "embeds": [
     {
-      "title": "2",
-      "description": "3",
+      "title": "3",
+      "description": "4",
       "color": null,
       "fields": [
         {
-          "name": "4",
-          "value": "5"
+          "name": "5",
+          "value": "6"
         }
       ],
       "author": {
-        "name": "1"
+        "name": "2"
       },
       "footer": {
-        "text": "6"
+        "text": "7"
       }
     }
   ],
