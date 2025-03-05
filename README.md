@@ -1,5 +1,5 @@
 # DiscordEmbedFromJSON
-Библиотека, позволяющая преобразовать JSON в класс Embed.
+Библиотека, которая парсит JSON дискорд вебхука.
 
 Установка:
 ```bash
@@ -38,3 +38,5 @@ embed = message.embeds[0]
 
 print(message.content, embed.title, embed.author.name, embed.image, embed.description, embed.fields[0].value)
 ```
+
+Получить JSON сообщения можно с помощью [Diskohook](https://discohook.org/)
