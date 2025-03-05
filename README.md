@@ -4,8 +4,6 @@
 Установка:
 ```bash
 git clone https://github.com/yaroniks/DiscordEmbedFromJSON.git
-cd DiscordEmbedFromJSON
-pip install -r requirements.txt
 ```
 
 Пример использования:
@@ -38,6 +36,5 @@ message = dsjson.json_to_message("""{
 
 embed = message.embeds[0]
 
-print(message.content, embed.title, embed.author.name, 
-      embed.image, embed.description, embed.fields[0].value)
+print(message.content, embed.title, embed.author.name, embed.image, embed.description, embed.fields[0].value)
 ```
