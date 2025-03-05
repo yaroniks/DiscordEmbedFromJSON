@@ -34,9 +34,12 @@ class _EmbedImage:
     def __init__(self, data: dict):
         self.url: Optional[str] = data.get("url")
 
+    def __str__(self):
+        return self.url
+
 
 class _Embed:
-    __slots__ = ("_data", "title", "description", "url", "color", "timestamp", "author", "fields", "image", "thumbnail")
+    __slots__ = ("_data", "title", "description", "url", "color", "timestamp")
 
     def __init__(self, data: dict):
         self._data = data
@@ -45,22 +48,47 @@ class _Embed:
         self.url: Optional[str] = data.get("url")
         self.color: Optional[int] = data.get("color")
         self.timestamp: Optional[str] = data.get("timestamp")
-        self.author: _EmbedAuthor = _EmbedAuthor(data.get("author", {}))
-        self.fields: Union[list, list[_EmbedField]] = list(map(_EmbedField, data.get("fields", [])))
-        self.image: _EmbedImage = _EmbedImage(data.get("image", {}))
-        self.thumbnail: _EmbedImage = _EmbedImage(data.get("thumbnail", {}))
+
+    @property
+    def author(self) -> Optional[_EmbedAuthor]:
+        if self._data.get("author"):
+            return _EmbedAuthor(self._data["author"])
+        return None
+
+    @property
+    def fields(self) -> Optional[list[_EmbedField]]:
+        if self._data.get("fields"):
+            return list(map(_EmbedField, self._data["fields"]))
+        return None
+
+    @property
+    def image(self) -> Optional[_EmbedImage]:
+        if self._data.get("image"):
+            return _EmbedImage(self._data["fields"])
+        return None
+
+    @property
+    def thumbnail(self) -> Optional[_EmbedImage]:
+        if self._data.get("thumbnail"):
+            return _EmbedImage(self._data["fields"])
+        return None
 
 
 class _Message:
-    __slots__ = ("_data", "content", "embeds")
+    __slots__ = ("_data", "content")
 
     def __init__(self, data: dict):
         self._data = data
         self.content: Optional[str] = data.get("content")
-        self.embeds: Union[list, list[_Embed]] = list(map(_Embed, data.get("embeds", [])))
+
+    @property
+    def embeds(self) -> Optional[list[_Embed]]:
+        if self._data.get("embeds"):
+            return list(map(_Embed, self._data.get("embeds", [])))
+        return None
 
 
-def json_to_embed(data: Union[str, dict]) -> _Message:
+def json_to_message(data: Union[str, dict]) -> _Message:
     if isinstance(data, str):
         data = loads(data)
     return _Message(data)
